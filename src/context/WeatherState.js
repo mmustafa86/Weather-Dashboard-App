@@ -40,7 +40,7 @@ const WeatherState = (props) => {
     try {
       setLoading();
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${process.env.REACT_APP_API_ID}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=6&units=imperial&appid=${process.env.REACT_APP_API_ID}`
       );
       const responseData = await res.json();
 

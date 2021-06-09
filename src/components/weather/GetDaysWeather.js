@@ -28,38 +28,33 @@ export const GetDaysWeather = () => {
       </Card>
     );
   return (
-      <div></div>
-    // <Fragment>
-    //   {weather !== null && (
-    //     <Row className="justify-content-md-center">
-    //       <Card
-    //         className="rounded my-3 shadow-lg back-card"
-    //         style={{ width: "30rem" }}
-    //       >
-    //         <Row>
-    //           <Col>
-    //             <img
-    //               src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
-    //               style={{ width: "100px" }}
-    //             />
-    //             <h4 class="text-center">{weather.weather[0].description}</h4>
-    //           </Col>
-    //           <Col>
-    //             <h3>{weather.name}</h3>
-    //             <p>Day: {moment().format("dddd")}</p>
-    //             <p>Date: {moment().format("LL")}</p>
-    //             <h3>{weather.main.temp} &deg;F</h3>
-    //           </Col>
-    //           <Col>
-    //             <h5>description: feels_like:</h5>
-
-    //             {/* <Button onClick={() => addCity(city)}>+</Button> */}
-    //           </Col>
-    //         </Row>
-    //       </Card>
-    //     </Row>
-    //   )}
-    // </Fragment>
+      
+    <Fragment>
+     <div class="d-flex justify-content-center mb-3 shadow-lg">
+    {weathers !== null ? weathers.list.map(weather=>(
+         
+        <Card className="rounded my-3  back-card" style={{ width: "10rem"  }}>
+          <Card.Body className="text-center">
+            <Card.Title>{moment(`${weather.dt_txt}`).format(' h:mm:ss a')}</Card.Title>
+            <Card.Img
+              className=""
+              variant="top"
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+              style={{ width: "100px" }}
+            />
+            <Card.Text>{weather.weather[0].description}</Card.Text>
+            <Card.Text>{weather.main.temp_max}/{weather.main.temp_min}</Card.Text>
+          </Card.Body>
+        </Card>
+      
+    
+    )) : <div></div>
+       
+    
+    }
+    </div>
+      </Fragment>
+  
   );
 };
 
