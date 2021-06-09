@@ -3,11 +3,12 @@ import React, { useReducer } from "react";
 import WeatherContext from "./weatherContext";
 import weatherReducer from "./weatherReducer";
 
-import { SEARCH_WEATHER, SET_LOADING, GET_CITES } from "./types";
+import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_DAYS } from "./types";
 
 const WeatherState = (props) => {
   const initialState = {
     weather: null,
+    weathers:null,
     city: {},
     favWeather: [],
     loading: false,
@@ -24,7 +25,7 @@ const WeatherState = (props) => {
       );
       const responseData = await res.json();
 
-      console.log(responseData);
+      // console.log(responseData);
       dispatch({
         type: SEARCH_WEATHER,
         payload: responseData,
@@ -33,6 +34,27 @@ const WeatherState = (props) => {
       console.log(err);
     }
   };
+
+
+  const getDaysWeather = async (city) => {
+    try {
+      setLoading();
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=imperial&appid=${process.env.REACT_APP_API_ID}`
+      );
+      const responseData = await res.json();
+
+      console.log(responseData);
+      dispatch({
+        type: GET_DAYS,
+        payload: responseData,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
 
   //Add city
 
@@ -98,11 +120,13 @@ const WeatherState = (props) => {
     <WeatherContext.Provider
       value={{
         weather: state.weather,
+        weathers:state.weathers,
         loading: state.loading,
         favWeather: state.favWeather,
         searchWeather,
         addCity,
         getCites,
+        getDaysWeather
       }}
     >
       {props.children}

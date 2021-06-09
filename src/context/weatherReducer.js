@@ -1,4 +1,4 @@
-import { SEARCH_WEATHER,GET_CITES } from "./types";
+import { SEARCH_WEATHER,GET_CITES  ,GET_DAYS} from "./types";
 
 
 
@@ -8,6 +8,12 @@ case SEARCH_WEATHER:
     return{
         ...state,
         weather:action.payload,
+        loading:false
+    };
+    case GET_DAYS:
+    return{
+        ...state,
+        weathers:action.payload,
         loading:false
     };
 case GET_CITES:

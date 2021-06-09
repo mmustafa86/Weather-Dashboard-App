@@ -3,7 +3,7 @@ import moment from "moment";
 import Card from "../layout/Card";
 import PropTypes from 'prop-types'
 import { Button } from 'semantic-ui-react'
-const WeatherCard = ({data}) => {
+const FavWeather = ({data}) => {
 
 
     const onClick=async()=>{
@@ -29,8 +29,8 @@ const WeatherCard = ({data}) => {
     )
 }
 
-WeatherCard.propTypes = {
+FavWeather.propTypes = {
     data:PropTypes.object.isRequired
 }
 
-export default WeatherCard
+export default FavWeather;

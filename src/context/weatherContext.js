@@ -4,4 +4,3 @@ const weatherContext=createContext();
 
 export default weatherContext;
 
-//

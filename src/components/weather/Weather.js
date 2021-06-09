@@ -1,9 +1,18 @@
 import React, { useState, Fragment, useContext } from "react";
-import WeatherCard from "../layout/Card";
+// import Card from "../layout/Card";
 import moment from "moment";
-import Search from "./Search";
 import WeatherContext from "../../context/weatherContext";
 import Loading from "../layout/Loading";
+import {
+  Container,
+  Form,
+  FormControl,
+  Card,
+  Row,
+  Col,
+  Navbar,
+  Nav,
+} from "react-bootstrap";
 import { Button } from "semantic-ui-react";
 
 export const Weather = () => {
@@ -23,22 +32,41 @@ export const Weather = () => {
 
   if (loading)
     return (
-      <WeatherCard>
+      <Card>
         <Loading />{" "}
-      </WeatherCard>
+      </Card>
     );
   return (
     <Fragment>
-      <Search handleData={handleParentData} />
       {weather !== null && (
-        <WeatherCard>
-          <h1>City Name: {weather.name}</h1>
-          <p>Day: {moment().format("dddd")}</p>
-          <p>Date: {moment().format("LL")}</p>
-          {weather.weather[0].main}
-          <p>Temprature: {weather.main.temp} &deg;F</p>
-          <Button onClick={() => addCity(city)}>+</Button>
-        </WeatherCard>
+        <Row className="justify-content-md-center">
+          <Card
+            className="rounded my-3 shadow-lg back-card"
+            style={{ width: "30rem" }}
+          >
+            <Row>
+              <Col >
+                <img
+                
+                  src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
+                  style={{ width: "100px" }}
+                />
+                <h4 class="text-center">{weather.weather[0].description}</h4>
+              </Col>
+              <Col>
+                <h3>{weather.name}</h3>
+                <p>Day: {moment().format("dddd")}</p>
+                <p>Date: {moment().format("LL")}</p>
+                <h3>{weather.main.temp} &deg;F</h3>
+              </Col>
+              <Col>
+                <h5>description: feels_like:</h5>
+
+                {/* <Button onClick={() => addCity(city)}>+</Button> */}
+              </Col>
+            </Row>
+          </Card>
+        </Row>
       )}
     </Fragment>
   );

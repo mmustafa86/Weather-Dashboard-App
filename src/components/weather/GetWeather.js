@@ -1,5 +1,5 @@
 import React, { useState, useEffect ,useContext} from "react";
-import WeatherCard from "./WeatherCard";
+import FavWeather from "./FavWeather";
 import WeatherContext from "../../context/weatherContext";
 const GetWeather = () => {
   // const [favWeather, setFavWeather] = useState("");
@@ -20,7 +20,7 @@ const GetWeather = () => {
   return (
     <div>
       {favWeather.length > 0 &&
-        favWeather.map((fav) => <WeatherCard data={fav} />)}
+        favWeather.map((fav) => <FavWeather key={fav.id} data={fav} />)}
     </div>
   );
 };

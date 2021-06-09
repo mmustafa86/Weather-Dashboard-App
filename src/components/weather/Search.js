@@ -1,7 +1,7 @@
 import React, { useState ,useContext} from "react";
-import { Input,Form } from "semantic-ui-react";
-import { Button } from 'semantic-ui-react'
+import { Form, FormControl, Row,} from "react-bootstrap";
 import WeatherContext from '../../context/weatherContext'
+
 export const Search = (props) => {
   const [text, setText] = useState('');
   const weatherContext=useContext(WeatherContext);
@@ -14,8 +14,9 @@ const onSubmit=e =>{
   if(text===''){
 alert("Please enter something");
   }else{
-    props.handleData(text)
-    weatherContext.searchWeather(text)
+    // props.handleData(text)
+    weatherContext.searchWeather(text);
+    weatherContext.getDaysWeather(text);
     setText('');
   }
    
@@ -23,18 +24,26 @@ alert("Please enter something");
 
 
   return (
-    <div>
-    <Form onSubmit={onSubmit}>
-      <Input
-        placeholder="Search..."
+
+
+    <Row className="justify-content-md-center my-3">
+    <Form className="search-loaction" style={{ width: "18rem" }} onSubmit={onSubmit}>
+      <FormControl
         type="text"
-        name="text"
+        name="city"
+        placeholder="What city?"
+        autoComplete="off"
+        className="text-muted p-4 shadow-sm"
         value={text}
         onChange={onChange}
       />
-      <Button>Search</Button>
-     </Form>
-    </div>
+    </Form>
+  </Row>
+
+
+  
+ 
+
   );
 };
 export default Search;

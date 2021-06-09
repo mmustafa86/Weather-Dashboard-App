@@ -3,44 +3,98 @@ import './weatherIcons.css'
 
 const WeatherIcons = props => {
     return (
-        <div>
-            <h1>Weather</h1>
-		<div className="container">
-			<div className="weather-sun">
-				<div className="sun">
-					<div className="rays"></div>
-					<div className="rays"></div>
-					<div className="rays"></div>
-					<div className="rays"></div>
-				</div>
-			</div>
-			<div className="weather-cloud">
-				<div className="cloud"></div>
-				<div className="cloud"></div>
-			</div>
-			<div className="weather-snow">
-				<div className="snow">
-					<div className="f"></div>
-				</div>
-			</div>
-			<div className="weather-cloudAndSun">
-				<div className="cloud"></div>
-				<div className="sun">
-					<div className="rays"></div>
-					<div className="rays"></div>
-					<div className="rays"></div>
-					<div className="rays"></div>
-				</div>
-			</div>
-			<div className="weather-rain">
-				<div className="cloud"></div>
-				<div className="rain"></div>
-				<div className="rain"></div>
-				<div className="rain"></div>
-				<div className="rain"></div>
-			</div>
-		</div>
-        </div>
+
+		<div class="wrapper">
+  <div class="sun"></div>
+  <div class="cloud">
+    <div class="cloud1">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="cloud1 c_shadow">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="cloud_s">
+    <div class="cloud1">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="cloud1 c_shadow">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="cloud_vs">
+    <div class="cloud1">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div class="cloud1 c_shadow">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <div class="haze"></div>
+  <div class="haze_stripe"></div>
+  <div class="haze_stripe"></div>
+  <div class="haze_stripe"></div>
+  <div class="thunder"></div>
+  <div class="rain">
+     <ul>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+  </div>
+  <div class="sleet">
+     <ul>
+       <li></li>
+       <li></li>
+       <li></li>
+    </ul>
+  </div>
+  <div class="text">
+    <ul>
+      <li>Mostly Sunny</li>
+      <li>Partly Sunny</li>
+      <li>Partly Cloudy</li>
+      <li>Mostly Cloudy</li>
+      <li>Cloudy</li>
+      <li>Hazy</li>
+      <li>Thunderstorm</li>
+      <li>Rain</li>
+      <li>Sleet</li>
+    </ul>
+  </div>
+</div>
     )
 }
 
