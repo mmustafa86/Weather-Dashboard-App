@@ -4,14 +4,11 @@ import moment from "moment";
 import WeatherContext from "../../context/weatherContext";
 import Loading from "../layout/Loading";
 import {
-  Container,
-  Form,
-  FormControl,
+
   Card,
   Row,
   Col,
-  Navbar,
-  Nav,
+
 } from "react-bootstrap";
 import { Button } from "semantic-ui-react";
 
@@ -47,17 +44,17 @@ export const Weather = () => {
             <Row>
               <Col >
                 <img
-                
+                className=""
                   src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
                   style={{ width: "100px" }}
                 />
-                <h4 class="text-center">{weather.weather[0].description}</h4>
+                <h4 className="text-center pb-3">{weather.weather[0].description}</h4>
               </Col>
               <Col>
                 <h3>{weather.name}</h3>
                 <p>Day: {moment().format("dddd")}</p>
                 <p>Date: {moment().format("LL")}</p>
-                <h3>{weather.main.temp} &deg;F</h3>
+                <h3>{Math.round(weather.main.temp)} &deg;F</h3>
               </Col>
               <Col>
                 <h5>description: feels_like:</h5>

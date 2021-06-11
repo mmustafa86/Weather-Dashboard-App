@@ -5,5 +5,6 @@ export const SET_LOADING = 'SET_LOADING';
 export const ADD_WEATHER ='ADD_WEATHER';
 export const GET_CITES ='GET_CITES';
 export const GET_DAYS ='GET_CITES';
+export const CURRENT_LOCATION ='CURRENT_LOCATION';
 // export const SET_ALERT = 'SET_ALERT';
 // export const REMOVE_ALERT = 'REMOVE_ALERT';

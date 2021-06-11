@@ -3,7 +3,7 @@ import React, { useState, Fragment, useContext } from "react";
 import moment from "moment";
 import WeatherContext from "../../context/weatherContext";
 import Loading from "../layout/Loading";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card} from "react-bootstrap";
 import { Button } from "semantic-ui-react";
 
 export const GetDaysWeather = () => {
@@ -43,7 +43,7 @@ export const GetDaysWeather = () => {
               style={{ width: "100px" }}
             />
             <Card.Text>{weather.weather[0].description}</Card.Text>
-            <Card.Text>{weather.main.temp_max}/{weather.main.temp_min}</Card.Text>
+            <Card.Text>{Math.round(weather.main.temp_max)}&deg;F  /{Math.round(weather.main.temp_min)}&deg;F</Card.Text>
           </Card.Body>
         </Card>
       

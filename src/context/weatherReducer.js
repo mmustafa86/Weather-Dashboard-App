@@ -1,27 +1,32 @@
-import { SEARCH_WEATHER,GET_CITES  ,GET_DAYS} from "./types";
+import { SEARCH_WEATHER, GET_CITES, GET_DAYS, CURRENT_LOCATION } from "./types";
 
-
-
-export default (state, action) => {
+const weatherReducer= (state, action) => {
   switch (action.type) {
-case SEARCH_WEATHER:
-    return{
+    case SEARCH_WEATHER:
+      return {
         ...state,
-        weather:action.payload,
-        loading:false
-    };
+        weather: action.payload,
+        loading: false,
+      };
+    case CURRENT_LOCATION:
+      return {
+        ...state,
+        current: action.payload,
+        loading: false,
+      };
     case GET_DAYS:
-    return{
+      return {
         ...state,
-        weathers:action.payload,
-        loading:false
-    };
-case GET_CITES:
-    return{
+        weathers: action.payload,
+        loading: false,
+      };
+    case GET_CITES:
+      return {
         ...state,
-        favWeather:action.payload
-    }    
+        favWeather: action.payload,
+      };
     default:
       return state;
   }
 };
+export default weatherReducer;

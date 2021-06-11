@@ -3,18 +3,45 @@ import React, { useReducer } from "react";
 import WeatherContext from "./weatherContext";
 import weatherReducer from "./weatherReducer";
 
-import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_DAYS } from "./types";
+import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_DAYS,CURRENT_LOCATION } from "./types";
 
 const WeatherState = (props) => {
   const initialState = {
     weather: null,
     weathers:null,
+    current:null,
     city: {},
     favWeather: [],
     loading: false,
   };
 
   const [state, dispatch] = useReducer(weatherReducer, initialState);
+
+
+//current location 
+
+
+const currentLoaction= async(lat,lon)=>{
+
+console.log(lat ,lon)
+  try {
+    setLoading();
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${process.env.REACT_APP_API_ID}`
+    );
+    const responseData = await res.json();
+
+    console.log(responseData);
+    dispatch({
+      type: CURRENT_LOCATION,
+      payload: responseData,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+
+
+}
 
   //search weather by city
   const searchWeather = async (city) => {
@@ -35,7 +62,7 @@ const WeatherState = (props) => {
     }
   };
 
-
+//get hourly 
   const getDaysWeather = async (city) => {
     try {
       setLoading();
@@ -123,7 +150,9 @@ const WeatherState = (props) => {
         weathers:state.weathers,
         loading: state.loading,
         favWeather: state.favWeather,
+        current:state.current,
         searchWeather,
+        currentLoaction,
         addCity,
         getCites,
         getDaysWeather
