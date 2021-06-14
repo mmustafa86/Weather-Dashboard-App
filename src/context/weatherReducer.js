@@ -1,4 +1,4 @@
-import { SEARCH_WEATHER, GET_CITES, GET_DAYS, CURRENT_LOCATION } from "./types";
+import { SEARCH_WEATHER, GET_CITES, GET_DAYS, CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR } from "./types";
 
 const weatherReducer= (state, action) => {
   switch (action.type) {
@@ -25,6 +25,17 @@ const weatherReducer= (state, action) => {
         ...state,
         favWeather: action.payload,
       };
+      case CITY_ERROR:
+        return {
+          ...state,
+          error: action.payload
+        };
+        case REMOVE_ERROR:
+            return  {
+                ...state,
+                error: null
+              };
+
     default:
       return state;
   }

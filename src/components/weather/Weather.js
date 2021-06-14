@@ -2,6 +2,7 @@ import React, { useState, Fragment, useContext } from "react";
 // import Card from "../layout/Card";
 import moment from "moment";
 import WeatherContext from "../../context/weatherContext";
+import Error from '../layout/Error'
 import Loading from "../layout/Loading";
 import {
 
@@ -10,14 +11,14 @@ import {
   Col,
 
 } from "react-bootstrap";
-import { Button } from "semantic-ui-react";
+
 
 export const Weather = () => {
   const weatherContext = useContext(WeatherContext);
 
   const [city, setCity] = useState("");
 
-  const { loading, weather, addCity } = weatherContext;
+  const { loading, weather, addCity ,error} = weatherContext;
 
   console.log(weather);
 
@@ -27,19 +28,22 @@ export const Weather = () => {
     setCity(data);
   };
 
-  if (loading)
+  if (error)
     return (
-      <Card>
-        <Loading />{" "}
-      </Card>
+      <Row className="justify-content-md-center">
+       <Error/>
+      </Row>
     );
+
   return (
     <Fragment>
-      {weather !== null && (
-        <Row className="justify-content-md-center">
+ <Row className="justify-content-md-center">
+
+      {weather !== null  &&(
+       
           <Card
             className="rounded my-3 shadow-lg back-card"
-            style={{ width: "30rem" }}
+            style={{ width: "40rem" }}
           >
             <Row>
               <Col >
@@ -63,8 +67,9 @@ export const Weather = () => {
               </Col>
             </Row>
           </Card>
-        </Row>
+       
       )}
+       </Row>
     </Fragment>
   );
 };

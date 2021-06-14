@@ -3,7 +3,7 @@ import React, { useReducer } from "react";
 import WeatherContext from "./weatherContext";
 import weatherReducer from "./weatherReducer";
 
-import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_DAYS,CURRENT_LOCATION } from "./types";
+import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_DAYS,CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR} from "./types";
 
 const WeatherState = (props) => {
   const initialState = {
@@ -13,6 +13,7 @@ const WeatherState = (props) => {
     city: {},
     favWeather: [],
     loading: false,
+    error:null
   };
 
   const [state, dispatch] = useReducer(weatherReducer, initialState);
@@ -38,6 +39,7 @@ console.log(lat ,lon)
     });
   } catch (err) {
     console.log(err);
+  
   }
 
 
@@ -45,21 +47,40 @@ console.log(lat ,lon)
 
   //search weather by city
   const searchWeather = async (city) => {
-    try {
-      setLoading();
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.REACT_APP_API_ID}`
-      );
-      const responseData = await res.json();
+  try{
+    
+    setLoading();
+    const res = await fetch(
+      `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${process.env.REACT_APP_API_ID}`
+    )
+    const responseData = await res.json();
 
-      // console.log(responseData);
-      dispatch({
-        type: SEARCH_WEATHER,
-        payload: responseData,
-      });
-    } catch (err) {
-      console.log(err);
-    }
+if(responseData.cod>=400 && responseData.cod<=600){
+  throw Error('City')
+  
+ 
+}else{
+  console.log(responseData);
+  dispatch({
+    type: SEARCH_WEATHER,
+    payload: responseData,
+  });
+
+}
+
+
+  } catch (error){
+    dispatch({
+      type: CITY_ERROR,
+      payload: error,
+    });
+    setTimeout(() => {
+      dispatch({ type: REMOVE_ERROR });
+    }, 5000);
+  }
+    
+ 
+    
   };
 
 //get hourly 
@@ -71,6 +92,11 @@ console.log(lat ,lon)
       );
       const responseData = await res.json();
 
+      if(responseData.cod>=400 && responseData.cod<=600){
+        throw Error('City')
+        
+      }
+  
       console.log(responseData);
       dispatch({
         type: GET_DAYS,
@@ -78,6 +104,14 @@ console.log(lat ,lon)
       });
     } catch (err) {
       console.log(err);
+      dispatch({
+        type: CITY_ERROR,
+        payload: err,
+      });
+      setTimeout(() => {
+        dispatch({ type: REMOVE_ERROR });
+      }, 5000);
+     
     }
   };
 
@@ -98,6 +132,7 @@ console.log(lat ,lon)
       console.log(res);
     } catch (err) {
       console.log(err);
+      
     }
   };
 
@@ -151,6 +186,7 @@ console.log(lat ,lon)
         loading: state.loading,
         favWeather: state.favWeather,
         current:state.current,
+        error:state.error,
         searchWeather,
         currentLoaction,
         addCity,

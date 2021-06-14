@@ -11,7 +11,7 @@ export const GetDaysWeather = () => {
 
   const [city, setCity] = useState("");
 
-  const { loading, weathers, addCity } = weatherContext;
+  const { loading, weathers, addCity ,error} = weatherContext;
 
   console.log(weathers);
 
@@ -21,17 +21,17 @@ export const GetDaysWeather = () => {
     setCity(data);
   };
 
-  if (loading)
+  if (error)
     return (
       <Card>
-        <Loading />{" "}
+        {/* <p>Error</p> */}
       </Card>
     );
   return (
       
     <Fragment>
      <div class="d-flex justify-content-center mb-3 shadow-lg">
-    {weathers !== null ? weathers.list.map(weather=>(
+    {weathers !== null  ? weathers.list.map(weather=>(
          
         <Card className="rounded my-3  back-card" style={{ width: "10rem"  }}>
           <Card.Body className="text-center">

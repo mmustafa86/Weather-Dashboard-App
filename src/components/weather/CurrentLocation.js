@@ -2,14 +2,15 @@ import React, {
   useState,
   useContext,
   useEffect,
-  useCallback,
   Fragment,
 } from "react";
+
+import { BsArrowRepeat } from "react-icons/bs";
 import WeatherContext from "../../context/weatherContext";
 import PropTypes from "prop-types";
 import moment from "moment";
 // import Loading from "../layout/Loading";
-import { Card, Row, Col, Spinner } from "react-bootstrap";
+import { Card, Row, Col, Spinner ,Button} from "react-bootstrap";
 
 const CurrentLocation = (props) => {
   const weatherContext = useContext(WeatherContext);
@@ -20,6 +21,8 @@ const CurrentLocation = (props) => {
   const { currentLoaction, current, loading } = weatherContext;
 
   useEffect(() => {
+
+      
     navigator.geolocation.getCurrentPosition(function (position) {
       setLat(position.coords.latitude);
       setLng(position.coords.longitude);
@@ -29,7 +32,10 @@ const CurrentLocation = (props) => {
     console.log("Longitude is:", lon);
     currentLoaction(lat, lon);
   }, [lat, lon]);
-
+  
+  const refresh = () => {
+    window.location.reload();
+  }
   //   if (loading )
   //     return (
   //       <Card>
@@ -47,6 +53,9 @@ const CurrentLocation = (props) => {
           >
             <Row>
               <Col>
+              <Button className="button"  variant="light"  icon='refresh' onClick={refresh} >
+             <BsArrowRepeat/>
+              </Button>
                 <img
                   className=""
                   src={`http://openweathermap.org/img/wn/${current.weather[0].icon}@2x.png`}
