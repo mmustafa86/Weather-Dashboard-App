@@ -88,7 +88,7 @@ if(responseData.cod>=400 && responseData.cod<=600){
     try {
       setLoading();
       const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=6&units=imperial&appid=${process.env.REACT_APP_API_ID}`
+        `https://api.openweathermap.org/data/2.5/forecast?q=${city}&cnt=16&units=imperial&appid=${process.env.REACT_APP_API_ID}`
       );
       const responseData = await res.json();
 

@@ -1,0 +1,16 @@
+
+.scrolling-wrapper{
+	overflow-x: auto;
+}
+
+
+.card-block{
+	height: 250px;
+	border: none;
+	transition: all 0.3s ease-in-out !important;
+	
+	&:hover{
+		transform: translateY(-5px);
+		box-shadow: none;
+	}
+}
