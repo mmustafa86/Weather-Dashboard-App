@@ -1,4 +1,4 @@
-import { SEARCH_WEATHER, GET_CITES, GET_DAYS, CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR } from "./types";
+import { SEARCH_WEATHER, GET_CITES, GET_HOURS, CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR ,GET_DAILY} from "./types";
 
 const weatherReducer= (state, action) => {
   switch (action.type) {
@@ -14,7 +14,13 @@ const weatherReducer= (state, action) => {
         current: action.payload,
         loading: false,
       };
-    case GET_DAYS:
+      case GET_DAILY:
+        return {
+          ...state,
+          daily: action.payload,
+          loading: false,
+        };
+    case GET_HOURS:
       return {
         ...state,
         weathers: action.payload,

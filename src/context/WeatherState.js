@@ -3,13 +3,14 @@ import React, { useReducer } from "react";
 import WeatherContext from "./weatherContext";
 import weatherReducer from "./weatherReducer";
 
-import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_DAYS,CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR} from "./types";
+import { SEARCH_WEATHER, SET_LOADING, GET_CITES ,GET_HOURS,CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR, GET_DAILY} from "./types";
 
 const WeatherState = (props) => {
   const initialState = {
     weather: null,
     weathers:null,
     current:null,
+    daily:null,
     city: {},
     favWeather: [],
     loading: false,
@@ -44,6 +45,35 @@ console.log(lat ,lon)
 
 
 }
+
+//get daily weather 
+
+
+const GetDailyWeahter= async(lat,lon)=>{
+
+  console.log(lat ,lon)
+    try {
+      setLoading();
+      const res = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=hourly&units=imperial&appid=${process.env.REACT_APP_API_ID}`
+      );
+      const responseData = await res.json();
+  
+      console.log(responseData);
+      dispatch({
+        type: GET_DAILY,
+        payload: responseData,
+      });
+    } catch (err) {
+      console.log(err);
+    
+    }
+  
+  
+  }
+
+
+
 
   //search weather by city
   const searchWeather = async (city) => {
@@ -84,7 +114,7 @@ if(responseData.cod>=400 && responseData.cod<=600){
   };
 
 //get hourly 
-  const getDaysWeather = async (city) => {
+  const getHourlyWeather = async (city) => {
     try {
       setLoading();
       const res = await fetch(
@@ -99,7 +129,7 @@ if(responseData.cod>=400 && responseData.cod<=600){
   
       console.log(responseData);
       dispatch({
-        type: GET_DAYS,
+        type: GET_HOURS,
         payload: responseData,
       });
     } catch (err) {
@@ -186,12 +216,14 @@ if(responseData.cod>=400 && responseData.cod<=600){
         loading: state.loading,
         favWeather: state.favWeather,
         current:state.current,
+        daily:state.daily,
         error:state.error,
         searchWeather,
         currentLoaction,
         addCity,
         getCites,
-        getDaysWeather
+        getHourlyWeather,
+        GetDailyWeahter
       }}
     >
       {props.children}

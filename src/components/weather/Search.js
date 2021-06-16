@@ -17,7 +17,7 @@ export const Search = (props) => {
     } else {
       // props.handleData(text)
       weatherContext.searchWeather(text);
-      weatherContext.getDaysWeather(text);
+      weatherContext.getHourlyWeather(text);
       setText("");
     }
   };

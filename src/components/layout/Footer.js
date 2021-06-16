@@ -3,7 +3,7 @@ import { Container, Navbar, NavbarBrand } from "react-bootstrap";
 
 const Footer = props => {
     return (
-        <footer class="fixed-bottom bg-light">
+        <footer className="fixed-bottom bg-light">
     
 <p className="text-center pb-3 ">Mohammed</p>
         </footer>

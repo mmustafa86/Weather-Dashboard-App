@@ -5,7 +5,7 @@ import WeatherContext from "../../context/weatherContext";
 import { Card ,Row,Col} from "react-bootstrap";
 import './GetHourly.scss'
 
-export const GetDaysWeather = () => {
+export const GetHourlyWeather = () => {
   const weatherContext = useContext(WeatherContext);
 
   const [city, setCity] = useState("");
@@ -59,4 +59,4 @@ export const GetDaysWeather = () => {
   );
 };
 
-export default GetDaysWeather;
+export default GetHourlyWeather;

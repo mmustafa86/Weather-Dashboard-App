@@ -24,15 +24,17 @@ const CurrentLocation = (props) => {
 
   useEffect(() => {
 
-      
+    if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(function (position) {
       setLat(position.coords.latitude);
       setLng(position.coords.longitude);
     });
-
     console.log("Latitude is:", lat);
     console.log("Longitude is:", lon);
     currentLoaction(lat, lon);
+}else {
+   console.log("Geolocation is not supported by this browser.") 
+}
   }, [lat, lon]);
   
 

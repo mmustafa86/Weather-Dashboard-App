@@ -15,8 +15,6 @@ const GetWeather = () => {
   }, []);
 
 
-
-
   return (
     <div>
       {favWeather.length > 0 &&
