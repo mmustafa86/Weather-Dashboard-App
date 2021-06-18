@@ -4,10 +4,10 @@ import './weatherIcons.css'
 const WeatherIcons = props => {
     return (
 
-		<div class="wrapper">
-  <div class="sun"></div>
-  <div class="cloud">
-    <div class="cloud1">
+		<div className="wrapper">
+  <div className="sun"></div>
+  <div className="cloud">
+    <div className="cloud1">
       <ul>
         <li></li>
         <li></li>
@@ -15,26 +15,7 @@ const WeatherIcons = props => {
         <li></li>
       </ul>
     </div>
-    <div class="cloud1 c_shadow">
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-  </div>
-  
-  <div class="cloud_s">
-    <div class="cloud1">
-      <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
-    <div class="cloud1 c_shadow">
+    <div className="cloud1 c_shadow">
       <ul>
         <li></li>
         <li></li>
@@ -44,8 +25,8 @@ const WeatherIcons = props => {
     </div>
   </div>
   
-  <div class="cloud_vs">
-    <div class="cloud1">
+  <div className="cloud_s">
+    <div className="cloud1">
       <ul>
         <li></li>
         <li></li>
@@ -53,7 +34,7 @@ const WeatherIcons = props => {
         <li></li>
       </ul>
     </div>
-    <div class="cloud1 c_shadow">
+    <div className="cloud1 c_shadow">
       <ul>
         <li></li>
         <li></li>
@@ -62,26 +43,45 @@ const WeatherIcons = props => {
       </ul>
     </div>
   </div>
-  <div class="haze"></div>
-  <div class="haze_stripe"></div>
-  <div class="haze_stripe"></div>
-  <div class="haze_stripe"></div>
-  <div class="thunder"></div>
-  <div class="rain">
+  
+  <div className="cloud_vs">
+    <div className="cloud1">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+    <div className="cloud1 c_shadow">
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+  <div className="haze"></div>
+  <div className="haze_stripe"></div>
+  <div className="haze_stripe"></div>
+  <div className="haze_stripe"></div>
+  <div className="thunder"></div>
+  <div className="rain">
      <ul>
        <li></li>
        <li></li>
        <li></li>
     </ul>
   </div>
-  <div class="sleet">
+  <div className="sleet">
      <ul>
        <li></li>
        <li></li>
        <li></li>
     </ul>
   </div>
-  <div class="text">
+  <div className="text">
     <ul>
       <li>Mostly Sunny</li>
       <li>Partly Sunny</li>

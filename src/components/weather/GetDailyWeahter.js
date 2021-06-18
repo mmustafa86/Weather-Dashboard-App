@@ -1,51 +1,41 @@
-import React, { useState, Fragment, useContext, useEffect } from "react";
-// import Card from "../layout/Card";
+import React, { Fragment, useContext, useEffect } from "react";
 import moment from "moment";
 import WeatherContext from "../../context/weatherContext";
-import { Card, Row, Col } from "react-bootstrap";
+import { Card, Col, Row } from "react-bootstrap";
+import {usePosistion}  from '../../Middleware/Geolocation'
 import "./GetHourly.scss";
 
 export const GetDailyWeahter = () => {
   const weatherContext = useContext(WeatherContext);
-  const [lat, setLat] = useState("");
-  const [lon, setLng] = useState("");
-  const [city, setCity] = useState("");
+ 
 
-  const { loading, daily, GetDailyWeahter, error } = weatherContext;
+  const {  daily, GetDailyWeahter } = weatherContext;
+  const{latitude,longitude}=usePosistion()
 
-  console.log(daily);
+
+console.log(longitude,latitude)
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        setLat(position.coords.latitude);
-        setLng(position.coords.longitude);
-      });
-      console.log("Latitude is:", lat);
-      console.log("Longitude is:", lon);
-      GetDailyWeahter(lat, lon);
-    }else {
-        console.log("Geolocation is not supported by this browser.") 
-     }
-  }, [lat, lon]);
 
-  //   if (error)
-  //     return (
-  //       <Card>
-  //         {/* <p>Error</p> */}
-  //       </Card>
-  //     );
+      GetDailyWeahter(latitude, longitude);
+    // }else {
+    //     console.log("Geolocation is not supported by this browser.") 
+    //  }
+     // eslint-disable-next-line
+  }, [latitude, longitude]);
+
   return (
     <Fragment>
-      <div>{daily !== null && !daily.message ? <div></div> : ""}</div>
       <div className="d-flex justify-content-center mb-3 container">
         <div className="scrolling-wrapper row flex-row flex-nowrap mt-1 pb-2 pt-3 shadow-lg ">
           {daily !== null && !daily.message ? (
             daily.daily.map((weather) => (
-              <Col key={weather.dt}>
+              <Row>
+              <Col >
                 <Card
                   className="rounded my-3  back-card card-block"
                   style={{ width: "10rem", height: "17rem" }}
+                  key={weather.dt}
                 >
                   <Card.Body className="text-center">
                     <Card.Title>
@@ -65,12 +55,23 @@ export const GetDailyWeahter = () => {
                   </Card.Body>
                 </Card>
               </Col>
+              
+              </Row>
+            
             ))
           ) : (
             <div></div>
           )}
         </div>
+       
       </div>
+      {/* {daily !== null && !daily.message && (
+        <Row>
+                <Col className="d-flex justify-content-center mb-3 container">
+                  <div>{daily.alerts[0].description}</div>
+                </Col>
+              </Row>
+              )} */}
     </Fragment>
   );
 };

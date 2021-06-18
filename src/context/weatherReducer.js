@@ -1,6 +1,15 @@
-import { SEARCH_WEATHER, GET_CITES, GET_HOURS, CURRENT_LOCATION,CITY_ERROR ,REMOVE_ERROR ,GET_DAILY} from "./types";
+import {
+  SEARCH_WEATHER,
+  GET_CITES,
+  GET_HOURS,
+  CURRENT_LOCATION,
+  CITY_ERROR,
+  REMOVE_ERROR,
+  GET_DAILY,
+  SET_LOADING,
+} from "./types";
 
-const weatherReducer= (state, action) => {
+const weatherReducer = (state, action) => {
   switch (action.type) {
     case SEARCH_WEATHER:
       return {
@@ -14,12 +23,12 @@ const weatherReducer= (state, action) => {
         current: action.payload,
         loading: false,
       };
-      case GET_DAILY:
-        return {
-          ...state,
-          daily: action.payload,
-          loading: false,
-        };
+    case GET_DAILY:
+      return {
+        ...state,
+        daily: action.payload,
+        loading: false,
+      };
     case GET_HOURS:
       return {
         ...state,
@@ -31,16 +40,21 @@ const weatherReducer= (state, action) => {
         ...state,
         favWeather: action.payload,
       };
-      case CITY_ERROR:
-        return {
-          ...state,
-          error: action.payload
-        };
-        case REMOVE_ERROR:
-            return  {
-                ...state,
-                error: null
-              };
+    case CITY_ERROR:
+      return {
+        ...state,
+        error: action.payload,
+      };
+    case REMOVE_ERROR:
+      return {
+        ...state,
+        error: null,
+      };
+    case SET_LOADING:
+      return {
+        ...state,
+        loading: true,
+      };
 
     default:
       return state;

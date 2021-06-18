@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Form, FormControl, Row } from "react-bootstrap";
 import WeatherContext from "../../context/weatherContext";
-import Error from "../layout/Error";
 export const Search = (props) => {
   const [text, setText] = useState("");
   const weatherContext = useContext(WeatherContext);

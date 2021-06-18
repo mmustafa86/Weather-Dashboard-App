@@ -1,24 +1,15 @@
-import React, { useState, Fragment, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 // import Card from "../layout/Card";
 import moment from "moment";
 import WeatherContext from "../../context/weatherContext";
-import { Card ,Row,Col} from "react-bootstrap";
+import { Card ,Col} from "react-bootstrap";
 import './GetHourly.scss'
 
 export const GetHourlyWeather = () => {
   const weatherContext = useContext(WeatherContext);
 
-  const [city, setCity] = useState("");
 
-  const { loading, weathers, addCity ,error} = weatherContext;
-
-  console.log(weathers);
-
-  const handleParentData = (data) => {
-    console.log(data);
-
-    setCity(data);
-  };
+  const { weathers ,error} = weatherContext;
 
   if (error)
     return (
@@ -29,8 +20,8 @@ export const GetHourlyWeather = () => {
   return (
       
     <Fragment>
-     <div class="d-flex justify-content-center mb-3 container">
-     <div class="scrolling-wrapper row flex-row flex-nowrap mt-1 pb-2 pt-3 shadow-lg ">
+     <div className="d-flex justify-content-center mb-3 container">
+     <div className="scrolling-wrapper row flex-row flex-nowrap mt-1 pb-2 pt-3 shadow-lg ">
     {weathers !== null  ? weathers.list.map(weather=>(
          <Col>
         <Card className="rounded my-3  back-card card-block" style={{ width: "10rem" ,height:"17rem"}}>
